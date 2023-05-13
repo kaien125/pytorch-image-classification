@@ -1,0 +1,49 @@
+restnet18_bs8_e100_i1000_relocate 100 epoch
+
+python eval.py images/part_whole_test restnet18_bs8_e100_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 50.00%
+Confusion Matrix
+----------------
+[[1001    0]
+ [1001    0]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 0.00 %
+
+python eval.py images/learning_test restnet18_bs8_e100_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 100.00%
+Confusion Matrix
+----------------
+[[1001    0]
+ [   0 1001]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 100.00 %
+
+python eval.py images/global_test restnet18_bs8_e100_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 25.97%
+Confusion Matrix
+----------------
+[[  2 999]
+ [483 518]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 0.20 %
+Accuracy of class    s_min : 51.75 %
+
+python eval.py images/composite_test restnet18_bs8_e100_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 55.39%
+Confusion Matrix
+----------------
+[[1001    0]
+ [ 893  108]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 10.79 %

@@ -1,0 +1,5 @@
+*.zip
+imds_small/
+*.jpg
+*.pth
+*.pyc

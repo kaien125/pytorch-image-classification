@@ -3,7 +3,7 @@ import torch
 import torchvision
 from torchvision import datasets, models, transforms
 import torch.utils.data as data
-from torch.utils.tensorboard import SummaryWriter
+# from torch.utils.tensorboard import SummaryWriter
 import torch.nn as nn
 import torch.optim as optim
 from torch.optim import lr_scheduler
@@ -22,37 +22,40 @@ args= vars(ap.parse_args())
 train_mode=args["mode"]
 
 # Set the train and validation directory paths
-train_directory = 'imds_small/train'
-valid_directory = 'imds_small/val'
+train_directory = 'images/train'
+valid_directory = 'images/val'
+augment = '_relocate'
+num_img = 1000
 # Set the model save path
-PATH="model.pth" 
+PATH="restnet18_bs8_e100_i1000_relocate.pth" 
 
 # Batch size
-bs = 64 
+bs = 4
 # Number of epochs
 num_epochs = 10
 # Number of classes
-num_classes = 11
+num_classes = 2
 # Number of workers
 num_cpu = multiprocessing.cpu_count()
 
 # Applying transforms to the data
 image_transforms = { 
     'train': transforms.Compose([
-        transforms.RandomResizedCrop(size=256, scale=(0.8, 1.0)),
-        transforms.RandomRotation(degrees=15),
-        transforms.RandomHorizontalFlip(),
-        transforms.CenterCrop(size=224),
+        # transforms.RandomResizedCrop(size=224, scale=(0.8, 1.0)),
+        transforms.Resize(size=224),
+        # transforms.RandomRotation(degrees=15),
+        # transforms.RandomHorizontalFlip(),
+        # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406],
-                             [0.229, 0.224, 0.225])
+        # transforms.Normalize([0.485, 0.456, 0.406],
+        #                      [0.229, 0.224, 0.225])
     ]),
     'valid': transforms.Compose([
-        transforms.Resize(size=256),
-        transforms.CenterCrop(size=224),
+        transforms.Resize(size=224),
+        # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406],
-                             [0.229, 0.224, 0.225])
+        # transforms.Normalize([0.485, 0.456, 0.406],
+        #                      [0.229, 0.224, 0.225])
     ])
 }
  
@@ -83,6 +86,7 @@ print("Classes:", class_names)
 # Print the train and validation data sizes
 print("Training-set size:",dataset_sizes['train'],
       "\nValidation-set size:", dataset_sizes['valid'])
+print("Training-set size:",dataset_sizes['train'])
 
 # Set default device as gpu, if available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -90,7 +94,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 if train_mode=='finetune':
     # Load a pretrained model - Resnet18
     print("\nLoading resnet18 for finetuning ...\n")
-    model_ft = models.resnet18(pretrained=True)
+    PATH = 'resnet18' + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+    model_ft = models.resnet18(pretrained=False)
 
     # Modify fc layers to match num_classes
     num_ftrs = model_ft.fc.in_features
@@ -98,16 +103,18 @@ if train_mode=='finetune':
 
 elif train_mode=='scratch':
     # Load a custom model - VGG11
+    PATH = 'vgg' + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
     print("\nLoading VGG11 for training from scratch ...\n")
-    model_ft = MyVGG11(in_ch=3,num_classes=11)
+    model_ft = MyVGG11(in_ch=3,num_classes=num_classes)
 
     # Set number of epochs to a higher value
-    num_epochs=100
+    num_epochs=1000
 
 elif train_mode=='transfer':
     # Load a pretrained model - MobilenetV2
     print("\nLoading mobilenetv2 as feature extractor ...\n")
-    model_ft = models.mobilenet_v2(pretrained=True)    
+    PATH = 'mobilenetv2' + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+    model_ft = models.mobilenet_v2(pretrained=False)    
 
     # Freeze all the required layers (i.e except last conv block and fc layers)
     for params in list(model_ft.parameters())[0:-5]:
@@ -148,7 +155,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=30):
     best_acc = 0.0
 
     # Tensorboard summary
-    writer = SummaryWriter()
+    # writer = SummaryWriter()
     
     for epoch in range(num_epochs):
         print('Epoch {}/{}'.format(epoch, num_epochs - 1))
@@ -156,6 +163,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=30):
 
         # Each epoch has a training and validation phase
         for phase in ['train', 'valid']:
+        # for phase in ['train']:
             if phase == 'train':
                 model.train()  # Set model to training mode
             else:
@@ -197,14 +205,14 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=30):
                 phase, epoch_loss, epoch_acc))
 
             # Record training loss and accuracy for each phase
-            if phase == 'train':
-                writer.add_scalar('Train/Loss', epoch_loss, epoch)
-                writer.add_scalar('Train/Accuracy', epoch_acc, epoch)
-                writer.flush()
-            else:
-                writer.add_scalar('Valid/Loss', epoch_loss, epoch)
-                writer.add_scalar('Valid/Accuracy', epoch_acc, epoch)
-                writer.flush()
+            # if phase == 'train':
+            #     writer.add_scalar('Train/Loss', epoch_loss, epoch)
+            #     writer.add_scalar('Train/Accuracy', epoch_acc, epoch)
+            #     writer.flush()
+            # else:
+            #     writer.add_scalar('Valid/Loss', epoch_loss, epoch)
+            #     writer.add_scalar('Valid/Accuracy', epoch_acc, epoch)
+            #     writer.flush()
 
             # deep copy the model
             if phase == 'valid' and epoch_acc > best_acc:

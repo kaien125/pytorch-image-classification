@@ -1,0 +1,65 @@
+mobilenetv2_model 100 epoch
+
+python eval.py images/part_whole_test mobilenetv2_model.pth
+tensor([[0.1030, 0.0327]], device='cuda:0')
+tensor([0], device='cuda:0')
+tensor([[0.0743, 0.0500]], device='cuda:0')
+tensor([0], device='cuda:0')
+Accuracy of the network on the 2 test images: 50.00%
+Confusion Matrix
+----------------
+[[1 0]
+ [1 0]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 0.00 %
+
+python eval.py images/learning_test mobilenetv2_model.pth
+tensor([[0.0955, 0.1287]], device='cuda:0')
+tensor([1], device='cuda:0')
+tensor([[0.1030, 0.0327]], device='cuda:0')
+tensor([0], device='cuda:0')
+Accuracy of the network on the 2 test images: 100.00%
+Confusion Matrix
+----------------
+[[1 0]
+ [0 1]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 100.00 %
+
+python eval.py images/global_test mobilenetv2_model.pth
+tensor([[0.0778, 0.0236]], device='cuda:0')
+tensor([0], device='cuda:0')
+tensor([[0.0506, 0.1838]], device='cuda:0')
+tensor([1], device='cuda:0')
+Accuracy of the network on the 2 test images: 0.00%
+Confusion Matrix
+----------------
+[[0 1]
+ [1 0]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 0.00 %
+Accuracy of class    s_min : 0.00 %
+
+python eval.py images/composite_test mobilenetv2_model.pth
+tensor([[0.1295, 0.0204]], device='cuda:0')
+tensor([0], device='cuda:0')
+tensor([[0.1555, 0.0595]], device='cuda:0')
+tensor([0], device='cuda:0')
+Accuracy of the network on the 2 test images: 50.00%
+Confusion Matrix
+----------------
+[[1 0]
+ [1 0]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 0.00 %

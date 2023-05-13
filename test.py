@@ -7,19 +7,21 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 # Paths for image directory and model
-IMDIR=sys.argv[1])
-MODEL='models/resnet18.pth'
+IMDIR=sys.argv[1]
+# MODEL='models/resnet18.pth'
+# MODEL='models/mobilenetv2.pth'
+MODEL=sys.argv[2]
 
 # Load the model for testing
 model = torch.load(MODEL)
 model.eval()
 
 # Class labels for prediction
-class_names=['apple','atm card','cat','banana','bangle','battery','bottle','broom','bulb','calender','camera']
+class_names=['s_plus','s_min']
 
-# Retreive 9 random images from directory
+# Retreive 7 random images from directory
 files=Path(IMDIR).resolve().glob('*.*')
-images=random.sample(list(files), 9)
+images=random.sample(list(files), 7)
 
 # Configure plots
 fig = plt.figure(figsize=(9,9))
@@ -27,11 +29,11 @@ rows,cols = 3,3
 
 # Preprocessing transformations
 preprocess=transforms.Compose([
-        transforms.Resize(size=256),
-        transforms.CenterCrop(size=224),
+        transforms.Resize(size=224),
+        # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406],
-                             [0.229, 0.224, 0.225])
+        # transforms.Normalize([0.485, 0.456, 0.406],
+        #                      [0.229, 0.224, 0.225])
     ])
 
 # Enable gpu mode, if cuda available
@@ -48,7 +50,8 @@ with torch.no_grad():
          plt.subplot(rows,cols,num+1)
          plt.title("Pred: "+label)
          plt.axis('off')
-         plt.imshow(img)
+        #  plt.imshow(img)
+         plt.savefig('test.png')
 '''
 Sample run: python test.py test
 '''

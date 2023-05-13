@@ -1,0 +1,65 @@
+resnet18_model 100 epoch
+
+python eval.py images/part_whole_test resnet18_model.pth
+tensor([[ 0.1037, -0.4334]], device='cuda:0')
+tensor([0], device='cuda:0')
+tensor([[-0.3319,  0.2266]], device='cuda:0')
+tensor([1], device='cuda:0')
+Accuracy of the network on the 2 test images: 100.00%
+Confusion Matrix
+----------------
+[[1 0]
+ [0 1]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 100.00 %
+
+python eval.py images/learning_test resnet18_model.pth
+tensor([[-0.7948,  0.5663]], device='cuda:0')
+tensor([1], device='cuda:0')
+tensor([[ 0.1037, -0.4334]], device='cuda:0')
+tensor([0], device='cuda:0')
+Accuracy of the network on the 2 test images: 100.00%
+Confusion Matrix
+----------------
+[[1 0]
+ [0 1]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 100.00 %
+
+python eval.py images/global_test resnet18_model.pth
+tensor([[-0.3959,  0.1570]], device='cuda:0')
+tensor([1], device='cuda:0')
+tensor([[-0.0113, -0.1761]], device='cuda:0')
+tensor([0], device='cuda:0')
+Accuracy of the network on the 2 test images: 100.00%
+Confusion Matrix
+----------------
+[[1 0]
+ [0 1]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 100.00 %
+
+python eval.py images/composite_test resnet18_model.pth
+tensor([[-0.3778,  0.3023]], device='cuda:0')
+tensor([1], device='cuda:0')
+tensor([[-0.3533,  0.0821]], device='cuda:0')
+tensor([1], device='cuda:0')
+Accuracy of the network on the 2 test images: 50.00%
+Confusion Matrix
+----------------
+[[0 1]
+ [0 1]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 0.00 %
+Accuracy of class    s_min : 100.00 %

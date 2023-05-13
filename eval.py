@@ -5,26 +5,28 @@ from torchvision import datasets, models, transforms
 import torch.utils.data as data
 import multiprocessing
 from sklearn.metrics import confusion_matrix
+import sys
 
 # Paths for image directory and model
-EVAL_DIR=sys.argv[1])
-EVAL_MODEL='models/mobilenetv2.pth'
-
+EVAL_DIR=sys.argv[1]
+# EVAL_MODEL='models/mobilenetv2.pth'
+EVAL_MODEL=sys.argv[2]
 # Load the model for evaluation
 model = torch.load(EVAL_MODEL)
 model.eval()
 
 # Configure batch size and nuber of cpu's
 num_cpu = multiprocessing.cpu_count()
-bs = 8
+bs = 1
 
 # Prepare the eval data loader
 eval_transform=transforms.Compose([
-        transforms.Resize(size=256),
-        transforms.CenterCrop(size=224),
+        transforms.Resize(size=224),
+        # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406],
-                             [0.229, 0.224, 0.225])])
+        # transforms.Normalize([0.485, 0.456, 0.406],
+        #                      [0.229, 0.224, 0.225])
+        ])
 
 eval_dataset=datasets.ImageFolder(root=EVAL_DIR, transform=eval_transform)
 eval_loader=data.DataLoader(eval_dataset, batch_size=bs, shuffle=True,
@@ -38,7 +40,7 @@ num_classes=len(eval_dataset.classes)
 dsize=len(eval_dataset)
 
 # Class label names
-class_names=['apple','atm card','cat','banana','bangle','battery','bottle','broom','bulb','calender','camera']
+class_names=['s_plus','s_min']
 
 # Initialize the prediction and label lists
 predlist=torch.zeros(0,dtype=torch.long, device='cpu')
