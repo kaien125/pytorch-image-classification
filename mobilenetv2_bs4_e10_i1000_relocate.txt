@@ -1,0 +1,49 @@
+mobilenetv2_bs4_e10_i1000_relocate
+
+python eval.py images_relocate/part_whole_test mobilenetv2_bs4_e10_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 53.85%
+Confusion Matrix
+----------------
+[[982  19]
+ [905  96]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 98.10 %
+Accuracy of class    s_min : 9.59 %
+
+python eval.py images_relocate/learning_test mobilenetv2_bs4_e10_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 97.40%
+Confusion Matrix
+----------------
+[[985  16]
+ [ 36 965]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 98.40 %
+Accuracy of class    s_min : 96.40 %
+
+python eval.py images_relocate/global_test mobilenetv2_bs4_e10_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 18.18%
+Confusion Matrix
+----------------
+[[326 675]
+ [963  38]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 32.57 %
+Accuracy of class    s_min : 3.80 %
+
+python eval.py images_relocate/composite_test mobilenetv2_bs4_e10_i1000_relocate.pth
+Accuracy of the network on the 2002 test images: 75.02%
+Confusion Matrix
+----------------
+[[979  22]
+ [478 523]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 97.80 %
+Accuracy of class    s_min : 52.25 %

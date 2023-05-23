@@ -22,12 +22,13 @@ args= vars(ap.parse_args())
 train_mode=args["mode"]
 
 # Set the train and validation directory paths
-train_directory = 'images/train'
-valid_directory = 'images/val'
-augment = '_relocate'
+train_directory = 'images_resize_relocate/train'
+# valid_directory = 'images_resize_relocate/val'
+valid_directory = train_directory.replace('train','val')
+augment = train_directory.split('/')[0].replace('images','')
 num_img = 1000
 # Set the model save path
-PATH="restnet18_bs8_e100_i1000_relocate.pth" 
+# PATH="restnet18_bs8_e100_i1000_relocate.pth" 
 
 # Batch size
 bs = 4
