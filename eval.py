@@ -38,6 +38,9 @@ EVAL_MODEL = train_mode + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(nu
 model = torch.load(EVAL_MODEL)
 model.eval()
 
+print(EVAL_MODEL)
+print(sub_path)
+
 # Configure batch size and nuber of cpu's
 num_cpu = multiprocessing.cpu_count()
 bs = 1
