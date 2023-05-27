@@ -5,12 +5,35 @@ from torchvision import datasets, models, transforms
 import torch.utils.data as data
 import multiprocessing
 from sklearn.metrics import confusion_matrix
-import sys
+import sys, argparse
 
+# Construct argument parser
+ap = argparse.ArgumentParser()
+ap.add_argument("--model", required=True, help="Training mode: resnet18/vgg11/mobilenetv2")
+ap.add_argument("--bs", required=True, help="batch size")
+ap.add_argument("--num_epochs", required=True, help="number of epochs")
+ap.add_argument("--image_path", required=True, help="image_path")
+ap.add_argument("--num_images", required=True, help="num_images")
+ap.add_argument("--sub_path", required=True, help="sub_path")
+args= vars(ap.parse_args())
+
+# Set training mode
+train_mode=args["model"]
+# Batch size
+bs = int(args["bs"])
+# Number of epochs
+num_epochs = int(args["num_epochs"])
+# Number of images 
+num_img = int(args["num_images"])
+
+image_path = args["image_path"]
+sub_path = args["sub_path"]
+augment = image_path.replace('images','')
 # Paths for image directory and model
-EVAL_DIR=sys.argv[1]
+EVAL_DIR=image_path+'/'+sub_path
 # EVAL_MODEL='models/mobilenetv2.pth'
-EVAL_MODEL=sys.argv[2]
+# Set the model save path
+EVAL_MODEL = train_mode + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 # Load the model for evaluation
 model = torch.load(EVAL_MODEL)
 model.eval()
@@ -40,7 +63,7 @@ num_classes=len(eval_dataset.classes)
 dsize=len(eval_dataset)
 
 # Class label names
-class_names=['s_plus','s_min']
+class_names=['plus','min']
 
 # Initialize the prediction and label lists
 predlist=torch.zeros(0,dtype=torch.long, device='cpu')

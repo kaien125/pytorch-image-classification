@@ -15,29 +15,38 @@ from matplotlib import pyplot as plt
 
 # Construct argument parser
 ap = argparse.ArgumentParser()
-ap.add_argument("--mode", required=True, help="Training mode: finetue/transfer/scratch")
+ap.add_argument("--model", required=True, help="Training mode: resnet18/vgg11/mobilenetv2")
+ap.add_argument("--bs", required=True, help="batch size")
+ap.add_argument("--num_epochs", required=True, help="number of epochs")
+ap.add_argument("--image_path", required=True, help="image_path")
+ap.add_argument("--num_images", required=True, help="num_images")
 args= vars(ap.parse_args())
 
 # Set training mode
-train_mode=args["mode"]
+train_mode=args["model"]
+# Batch size
+bs = int(args["bs"])
+# Number of epochs
+num_epochs = int(args["num_epochs"])
+# Number of images 
+num_img = int(args["num_images"])
+
+image_path = args["image_path"]
 
 # Set the train and validation directory paths
-train_directory = 'images_resize_relocate_10000/train'
+train_directory = image_path + '/train'
 # valid_directory = 'images_resize_relocate/val'
-valid_directory = train_directory.replace('train','val')
-augment = train_directory.split('/')[0].replace('images','')
-num_img = 10000
-# Set the model save path
-# PATH="restnet18_bs8_e100_i1000_relocate.pth" 
+valid_directory = image_path + '/val'
+augment = image_path.replace('images','')
 
-# Batch size
-bs = 2
-# Number of epochs
-num_epochs = 10
+# Set the model save path
+PATH = train_mode + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+
 # Number of classes
 num_classes = 2
 # Number of workers
-num_cpu = multiprocessing.cpu_count()
+# num_cpu = multiprocessing.cpu_count()
+num_cpu = 1
 
 # Applying transforms to the data
 image_transforms = { 
@@ -92,31 +101,29 @@ print("Training-set size:",dataset_sizes['train'])
 
 # Set default device as gpu, if available
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+print(device)
 
-if train_mode=='finetune':
+if train_mode=='resnet18':
     # Load a pretrained model - Resnet18
     print("\nLoading resnet18 for finetuning ...\n")
-    PATH = 'resnet18' + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
-    model_ft = models.resnet18(pretrained=False)
+    model_ft = models.resnet18(weights=None)
 
     # Modify fc layers to match num_classes
     num_ftrs = model_ft.fc.in_features
     model_ft.fc = nn.Linear(num_ftrs,num_classes )
 
-elif train_mode=='scratch':
+elif train_mode=='vgg11':
     # Load a custom model - VGG11
-    PATH = 'vgg' + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
     print("\nLoading VGG11 for training from scratch ...\n")
     model_ft = MyVGG11(in_ch=3,num_classes=num_classes)
 
     # Set number of epochs to a higher value
     num_epochs=1000
 
-elif train_mode=='transfer':
+elif train_mode=='mobilenetv2':
     # Load a pretrained model - MobilenetV2
     print("\nLoading mobilenetv2 as feature extractor ...\n")
-    PATH = 'mobilenetv2' + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
-    model_ft = models.mobilenet_v2(pretrained=False)    
+    model_ft = models.mobilenet_v2(weights=None)    
 
     # Freeze all the required layers (i.e except last conv block and fc layers)
     for params in list(model_ft.parameters())[0:-5]:
@@ -234,7 +241,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=30):
 
 # Train the model
 model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
-                       num_epochs=num_epochs)
+                    num_epochs=num_epochs)
 # Save the entire model
 print("\nSaving the model...")
 torch.save(model_ft, PATH)
