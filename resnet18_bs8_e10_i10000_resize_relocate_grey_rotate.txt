@@ -1,0 +1,49 @@
+resnet18_bs8_e10_i10000_resize_relocate_grey_rotate
+
+python eval.py images_resize_relocate_grey_rotate/part_whole_test resnet18_bs8_e10_i10000_resize_relocate_grey_rotate.pth
+Accuracy of the network on the 20002 test images: 99.64%
+Confusion Matrix
+----------------
+[[9977   24]
+ [  48 9953]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 99.76 %
+Accuracy of class    s_min : 99.52 %
+
+python eval.py images_resize_relocate_grey_rotate/learning_test resnet18_bs8_e10_i10000_resize_relocate_grey_rotate.pth
+Accuracy of the network on the 20002 test images: 99.81%
+Confusion Matrix
+----------------
+[[9977   24]
+ [  14 9987]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 99.76 %
+Accuracy of class    s_min : 99.86 %
+
+python eval.py images_resize_relocate_grey_rotate/global_test resnet18_bs8_e10_i10000_resize_relocate_grey_rotate.pth
+Accuracy of the network on the 20002 test images: 99.78%
+Confusion Matrix
+----------------
+[[9971   30]
+ [  15 9986]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 99.70 %
+Accuracy of class    s_min : 99.85 %
+
+python eval.py images_resize_relocate_grey_rotate/composite_test resnet18_bs8_e10_i10000_resize_relocate_grey_rotate.pth
+Accuracy of the network on the 2002 test images: 87.86%
+Confusion Matrix
+----------------
+[[1001    0]
+ [ 243  758]] 
+
+Per class accuracy
+------------------
+Accuracy of class   s_plus : 100.00 %
+Accuracy of class    s_min : 75.72 %

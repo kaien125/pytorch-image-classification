@@ -22,16 +22,16 @@ args= vars(ap.parse_args())
 train_mode=args["mode"]
 
 # Set the train and validation directory paths
-train_directory = 'images_resize_relocate/train'
+train_directory = 'images_resize_relocate_10000/train'
 # valid_directory = 'images_resize_relocate/val'
 valid_directory = train_directory.replace('train','val')
 augment = train_directory.split('/')[0].replace('images','')
-num_img = 1000
+num_img = 10000
 # Set the model save path
 # PATH="restnet18_bs8_e100_i1000_relocate.pth" 
 
 # Batch size
-bs = 4
+bs = 2
 # Number of epochs
 num_epochs = 10
 # Number of classes
@@ -44,7 +44,7 @@ image_transforms = {
     'train': transforms.Compose([
         # transforms.RandomResizedCrop(size=224, scale=(0.8, 1.0)),
         transforms.Resize(size=224),
-        # transforms.RandomRotation(degrees=15),
+        # transforms.RandomRotation(degrees=(-5,5)),
         # transforms.RandomHorizontalFlip(),
         # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
@@ -53,6 +53,7 @@ image_transforms = {
     ]),
     'valid': transforms.Compose([
         transforms.Resize(size=224),
+        # transforms.RandomRotation(degrees=(-5,5)),
         # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
         # transforms.Normalize([0.485, 0.456, 0.406],

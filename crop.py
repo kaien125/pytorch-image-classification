@@ -52,25 +52,25 @@ def relocate(image_path):
     scale_range = (0.5, 1.0)
     # Randomly resize the image
     im1 = random_resize(im1, scale_range)
-    im1= im1.convert('1')
-    # im1 = im1.rotate(random.uniform(-5, 5))
-    # Create a blank white image
+    # im1= im1.convert('1')
+    # # im1 = im1.rotate(random.uniform(-5, 5))
+    # # Create a blank white image
     blank_image = Image.new('RGB', (526, 526), 'white')
-    # Generate random coordinates within the blank image
+    # # Generate random coordinates within the blank image
     x = random.randint(0, blank_image.width - im1.width)
     y = random.randint(0, blank_image.height - im1.height)
-    # Paste the smaller image onto the blank image
+    # # Paste the smaller image onto the blank image
     blank_image.paste(im1, (x, y))
-    im1arr = array(blank_image)
-    # im1arr = im1arr + random.randint(0,122)
-    im1arr[im1arr == 255] -= random.randint(0,200)
-    im1arr[im1arr == 0] += random.randint(0,200)
-    blank_image = Image.fromarray(im1arr)
-    # Make transform matrix, to multiply R by 0.2-1
-    # Matrix = ( random.uniform(0.2, 1), 0,  0, 0, 
-    #         0,   random.uniform(0.2, 1),  0, 0, 
-    #         0,   0,  random.uniform(0.2, 1), 0,) 
-    # output_Image = output_Image.convert("RGB", Matrix) 
+    # im1arr = array(blank_image)
+    # # im1arr = im1arr + random.randint(0,122)
+    # im1arr[im1arr == 255] -= random.randint(0,200)
+    # im1arr[im1arr == 0] += random.randint(0,200)
+    # blank_image = Image.fromarray(im1arr)
+    # # Make transform matrix, to multiply R by 0.2-1
+    # # Matrix = ( random.uniform(0.2, 1), 0,  0, 0, 
+    # #         0,   random.uniform(0.2, 1),  0, 0, 
+    # #         0,   0,  random.uniform(0.2, 1), 0,) 
+    # # output_Image = output_Image.convert("RGB", Matrix) 
 
     # Display the final image
     return blank_image
@@ -79,7 +79,7 @@ def relocate(image_path):
 
 def main():
     repeat = 10000
-    root = 'C:\PhD\experiments\code\pytorch-image-classification\images'
+    root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
     for path, subdirs, files in tqdm(os.walk(root)):
         for name in files:
             image_path = os.path.join(path, name)

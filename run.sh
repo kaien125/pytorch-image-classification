@@ -1,0 +1,1 @@
+python train.py --mode fintune > SomeFile.txt  
