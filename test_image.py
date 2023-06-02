@@ -1,7 +1,7 @@
 from PIL import Image, ImageChops
 from numpy import *
 
-image_path = 'pytorch-image-classification/images/learning_test/0/s_plus+0.jpg'
+image_path = 'pytorch-image-classification/images_origin/composite_test/0/g_plus_new_l.png'
 image = Image.open(image_path)
 
 img_array = array(image)
