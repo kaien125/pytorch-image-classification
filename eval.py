@@ -6,6 +6,7 @@ import torch.utils.data as data
 import multiprocessing
 from sklearn.metrics import confusion_matrix
 import sys, argparse
+import pandas as pd
 
 # Construct argument parser
 ap = argparse.ArgumentParser()
@@ -42,9 +43,19 @@ print("")
 print(EVAL_MODEL)
 print(sub_path)
 
+def find_between( s, first, last ):
+    try:
+        start = s.index( first ) + len( first )
+        end = s.index( last, start )
+        return s[start:end]
+    except ValueError:
+        return ""
+
+resize = find_between(augment, "resize", "_con")
+contrast_reduce = find_between(augment, "Reduce", "_repeat")
 # Configure batch size and nuber of cpu's
 num_cpu = multiprocessing.cpu_count()
-bs = 1
+# bs = 1
 
 # Prepare the eval data loader
 eval_transform=transforms.Compose([
@@ -107,6 +118,8 @@ for label,accuracy in zip(eval_dataset.classes, class_accuracy):
      class_name=class_names[int(label)]
      print('Accuracy of class %8s : %0.2f %%'%(class_name, accuracy))
 
+with open(train_mode+'_eval.csv', 'a') as fd:
+    fd.write(f'\n{sub_path},{bs},{image_size},{num_epochs},{class_accuracy[0]/100},{class_accuracy[1]/100},{correct/total},{resize},{contrast_reduce},{EVAL_MODEL}')
 '''
 Sample run: python eval.py eval_ds
 '''
