@@ -52,7 +52,7 @@ def find_between( s, first, last ):
         return ""
 
 resize = find_between(augment, "resize", "_con")
-contrast_reduce = find_between(augment, "Reduce", "_repeat")
+contrast_reduce = find_between(augment, "Reduce", "_num_image")
 # Configure batch size and nuber of cpu's
 num_cpu = multiprocessing.cpu_count()
 # bs = 1

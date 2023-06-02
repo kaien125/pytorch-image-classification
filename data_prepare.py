@@ -58,20 +58,20 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--resize_scale", default=0.5, help="resize_scale 0 - 1")
     ap.add_argument("--contrast_reduce", default='0-10', help="contrast reduce tuple between 0 and 255")
-    ap.add_argument("--repeat", default=10, help="size of dataset")
+    ap.add_argument("--num_image", default=10, help="size of dataset")
     args= vars(ap.parse_args())
 
     resize_scale = float(args["resize_scale"])
     contrast_reduce = args["contrast_reduce"]
-    repeat = int(args["repeat"])
+    num_image = int(args["num_image"])
 
     root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
-    output_subfolder_name = f"images_resize{str(resize_scale)}_contrastReduce{contrast_reduce}_repeat{repeat}"
+    output_subfolder_name = f"images_resize{str(resize_scale)}_contrastReduce{contrast_reduce}_num_image{num_image}"
 
     for path, subdirs, files in tqdm(os.walk(root)):
         for name in files:
             image_path = os.path.join(path, name)
-            for i in range(repeat):
+            for i in range(num_image):
                 image_name = Path(image_path).stem
                 
                 output_path = image_path.replace(image_name, image_name+'+'+str(i)).replace('images',output_subfolder_name)
