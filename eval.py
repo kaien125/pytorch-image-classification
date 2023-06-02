@@ -15,6 +15,7 @@ ap.add_argument("--num_epochs", required=True, help="number of epochs")
 ap.add_argument("--image_path", required=True, help="image_path")
 ap.add_argument("--num_images", required=True, help="num_images")
 ap.add_argument("--sub_path", required=True, help="sub_path")
+ap.add_argument("--image_size", required=True, help="image_size")
 args= vars(ap.parse_args())
 
 # Set training mode
@@ -25,7 +26,7 @@ bs = int(args["bs"])
 num_epochs = int(args["num_epochs"])
 # Number of images 
 num_img = int(args["num_images"])
-
+image_size = int(args["image_size"])
 image_path = args["image_path"]
 sub_path = args["sub_path"]
 augment = image_path.replace('images','')
@@ -33,11 +34,11 @@ augment = image_path.replace('images','')
 EVAL_DIR=image_path+'/'+sub_path
 # EVAL_MODEL='models/mobilenetv2.pth'
 # Set the model save path
-EVAL_MODEL = train_mode + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+EVAL_MODEL = train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 # Load the model for evaluation
 model = torch.load(EVAL_MODEL)
 model.eval()
-
+print("")
 print(EVAL_MODEL)
 print(sub_path)
 
@@ -47,7 +48,7 @@ bs = 1
 
 # Prepare the eval data loader
 eval_transform=transforms.Compose([
-        transforms.Resize(size=224),
+        transforms.Resize(size=image_size),
         # transforms.CenterCrop(size=224),
         transforms.ToTensor(),
         # transforms.Normalize([0.485, 0.456, 0.406],

@@ -44,23 +44,29 @@ def relocate(image_path):
         dimension = (70, 60, 470, 455)
     elif image_name == 'g_min_l_plus':
         dimension = (50, 40, 490, 490)
+    elif image_name == 'g_plus_l_min':
+        dimension = (70, 65, 470, 470)
     else:
         print("invalid image name.")
     image = Image.open(image_path)
-    im1 = image.crop(dimension)
+    img_crop = image.crop(dimension)
+    img_crop_array = array(img_crop)
+    img_crop_array[img_crop_array >= 127] = 255
+    img_crop_array[img_crop_array <= 127] = 0
+    img_crop_clean = Image.fromarray(img_crop_array)
     # Define the range of scaling factors 
     scale_range = (0.5, 1.0)
     # Randomly resize the image
-    im1 = random_resize(im1, scale_range)
+    img_crop_resize = random_resize(img_crop_clean, scale_range)
     # im1= im1.convert('1')
     # # im1 = im1.rotate(random.uniform(-5, 5))
     # # Create a blank white image
     blank_image = Image.new('RGB', (526, 526), 'white')
     # # Generate random coordinates within the blank image
-    x = random.randint(0, blank_image.width - im1.width)
-    y = random.randint(0, blank_image.height - im1.height)
+    x = random.randint(0, blank_image.width - img_crop_resize.width)
+    y = random.randint(0, blank_image.height - img_crop_resize.height)
     # # Paste the smaller image onto the blank image
-    blank_image.paste(im1, (x, y))
+    blank_image.paste(img_crop_resize, (x, y))
     # im1arr = array(blank_image)
     # # im1arr = im1arr + random.randint(0,122)
     # im1arr[im1arr == 255] -= random.randint(0,200)
@@ -78,7 +84,7 @@ def relocate(image_path):
 
 
 def main():
-    repeat = 10000
+    repeat = 10
     root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
     for path, subdirs, files in tqdm(os.walk(root)):
         for name in files:
@@ -88,6 +94,8 @@ def main():
                 output_path = image_path.replace(image_name, image_name+'+'+str(i))
                 new_image = relocate(image_path)
                 new_image.save(output_path)
+            file_to_rem = Path(image_path)
+            file_to_rem.unlink()
 
 if __name__ == "__main__":
     main()

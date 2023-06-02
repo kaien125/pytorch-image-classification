@@ -20,6 +20,7 @@ ap.add_argument("--bs", required=True, help="batch size")
 ap.add_argument("--num_epochs", required=True, help="number of epochs")
 ap.add_argument("--image_path", required=True, help="image_path")
 ap.add_argument("--num_images", required=True, help="num_images")
+ap.add_argument("--image_size", required=True, help="image_size")
 args= vars(ap.parse_args())
 
 # Set training mode
@@ -32,6 +33,7 @@ num_epochs = int(args["num_epochs"])
 num_img = int(args["num_images"])
 
 image_path = args["image_path"]
+image_size=int(args["image_size"])
 
 # Set the train and validation directory paths
 train_directory = image_path + '/train'
@@ -40,7 +42,7 @@ valid_directory = image_path + '/val'
 augment = image_path.replace('images','')
 
 # Set the model save path
-PATH = train_mode + '_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+PATH = train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 
 # Number of classes
 num_classes = 2
@@ -52,7 +54,7 @@ num_cpu = 1
 image_transforms = { 
     'train': transforms.Compose([
         # transforms.RandomResizedCrop(size=224, scale=(0.8, 1.0)),
-        transforms.Resize(size=224),
+        transforms.Resize(size=image_size),
         # transforms.RandomRotation(degrees=(-5,5)),
         # transforms.RandomHorizontalFlip(),
         # transforms.CenterCrop(size=224),
@@ -61,7 +63,7 @@ image_transforms = {
         #                      [0.229, 0.224, 0.225])
     ]),
     'valid': transforms.Compose([
-        transforms.Resize(size=224),
+        transforms.Resize(size=image_size),
         # transforms.RandomRotation(degrees=(-5,5)),
         # transforms.CenterCrop(size=224),
         transforms.ToTensor(),

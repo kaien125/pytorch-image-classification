@@ -1,0 +1,52 @@
+
+resnet18_bs2_e10_i2_resize_relocate_10000.pth
+learning_test
+Accuracy of the network on the 20002 test images: 100.00%
+Confusion Matrix
+----------------
+[[10001     0]
+ [    0 10001]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 100.00 %
+
+resnet18_bs2_e10_i2_resize_relocate_10000.pth
+part_whole_test
+Accuracy of the network on the 20002 test images: 50.00%
+Confusion Matrix
+----------------
+[[10001     0]
+ [10001     0]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 0.00 %
+
+resnet18_bs2_e10_i2_resize_relocate_10000.pth
+global_test
+Accuracy of the network on the 20002 test images: 99.76%
+Confusion Matrix
+----------------
+[[10001     0]
+ [   48  9953]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 99.52 %
+
+resnet18_bs2_e10_i2_resize_relocate_10000.pth
+composite_test
+Accuracy of the network on the 20002 test images: 100.00%
+Confusion Matrix
+----------------
+[[10001     0]
+ [    0 10001]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 100.00 %
