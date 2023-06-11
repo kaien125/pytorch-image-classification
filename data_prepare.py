@@ -6,6 +6,8 @@ import os
 from tqdm import tqdm
 from numpy import *
 
+random.seed(100)
+
 def random_resize(image, scale_range):
     # Generate random scaling factors for width and height
     scale_factor = random.uniform(*scale_range)

@@ -12,6 +12,9 @@ import time, os, copy, argparse
 import multiprocessing
 from torchsummary import summary
 from matplotlib import pyplot as plt
+import random
+
+random.seed(100)
 
 # Construct argument parser
 ap = argparse.ArgumentParser()
