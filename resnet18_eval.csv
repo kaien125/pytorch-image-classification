@@ -1,4 +1,4 @@
-test,batch,image size,epoch,+ accuracy,- accuracy,avg accuracy,resize,contract reduce,model weights
+test,batch,image size,epoch,+ accuracy,- accuracy,avg accuracy,resize,contrast reduce,model weights
 learning_test,4,7,10,0.9374,1,0.9687,0.5,1-20,resnet18_is7_bs4_e10_i10000_resize0.5_contrastReduce1-20_num_image10000.pth
 part_whole_test,4,7,10,0.9405,0.9988,0.96965,0.5,1-20,resnet18_is7_bs4_e10_i10000_resize0.5_contrastReduce1-20_num_image10000.pth
 global_test,4,7,10,0.8735,0.9926,0.93305,0.5,1-20,resnet18_is7_bs4_e10_i10000_resize0.5_contrastReduce1-20_num_image10000.pth
