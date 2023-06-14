@@ -30,7 +30,7 @@ num_img = int(args["num_images"])
 image_size = int(args["image_size"])
 image_path = args["image_path"]
 sub_path = args["sub_path"]
-augment = image_path.replace('images','')
+augment = image_path.replace('images_occlusion','')
 # Paths for image directory and model
 EVAL_DIR=image_path+'/'+sub_path
 # EVAL_MODEL='models/mobilenetv2.pth'
