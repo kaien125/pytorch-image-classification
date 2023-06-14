@@ -37,7 +37,7 @@ EVAL_DIR=image_path+'/'+sub_path
 # Set the model save path
 EVAL_MODEL = train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 # Load the model for evaluation
-model = torch.load(EVAL_MODEL)
+model = torch.load("models/"+EVAL_MODEL)
 model.eval()
 print("")
 print(EVAL_MODEL)

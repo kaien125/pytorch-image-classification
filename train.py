@@ -45,7 +45,7 @@ valid_directory = image_path + '/val'
 augment = image_path.replace('images','')
 
 # Set the model save path
-PATH = train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+PATH = "models/"+train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 
 # Number of classes
 num_classes = 2
