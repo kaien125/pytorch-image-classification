@@ -1,0 +1,81 @@
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+learning_test
+Accuracy of the network on the 20000 test images: 86.32%
+Confusion Matrix
+----------------
+[[7414 2586]
+ [ 150 9850]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 74.14 %
+Accuracy of class      min : 98.50 %
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+part_whole_test
+Accuracy of the network on the 20000 test images: 86.43%
+Confusion Matrix
+----------------
+[[7463 2537]
+ [ 177 9823]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 74.63 %
+Accuracy of class      min : 98.23 %
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+part_whole_flip_test
+Accuracy of the network on the 20000 test images: 85.45%
+Confusion Matrix
+----------------
+[[7256 2744]
+ [ 166 9834]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 72.56 %
+Accuracy of class      min : 98.34 %
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+learning_occ_test
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+one_test
+Accuracy of the network on the 20000 test images: 49.47%
+Confusion Matrix
+----------------
+[[1775 8225]
+ [1882 8118]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 17.75 %
+Accuracy of class      min : 81.18 %
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+part_whole_occ_test
+Accuracy of the network on the 20000 test images: 95.41%
+Confusion Matrix
+----------------
+[[9366  634]
+ [ 284 9716]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 93.66 %
+Accuracy of class      min : 97.16 %
+
+resnet18_is56_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
+part_whole_flip_occ_test
+Accuracy of the network on the 20000 test images: 93.88%
+Confusion Matrix
+----------------
+[[9205  795]
+ [ 430 9570]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 92.05 %
+Accuracy of class      min : 95.70 %

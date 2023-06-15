@@ -1,0 +1,52 @@
+
+resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce141-160_num_image10000.pth
+learning_occ_test
+Accuracy of the network on the 20000 test images: 96.18%
+Confusion Matrix
+----------------
+[[10000     0]
+ [  764  9236]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 92.36 %
+
+resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce141-160_num_image10000.pth
+one_test
+Accuracy of the network on the 20000 test images: 60.47%
+Confusion Matrix
+----------------
+[[10000     0]
+ [ 7906  2094]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 20.94 %
+
+resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce141-160_num_image10000.pth
+part_whole_occ_test
+Accuracy of the network on the 20000 test images: 50.00%
+Confusion Matrix
+----------------
+[[10000     0]
+ [10000     0]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 100.00 %
+Accuracy of class      min : 0.00 %
+
+resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce141-160_num_image10000.pth
+part_whole_flip_occ_test
+Accuracy of the network on the 20000 test images: 52.26%
+Confusion Matrix
+----------------
+[[1231 8769]
+ [ 779 9221]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 12.31 %
+Accuracy of class      min : 92.21 %

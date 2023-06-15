@@ -67,8 +67,11 @@ def main():
     contrast_reduce = args["contrast_reduce"]
     num_image = int(args["num_image"])
 
-    root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
-    output_subfolder_name = f"images_resize{str(resize_scale)}_contrastReduce{contrast_reduce}_num_image{num_image}"
+    root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images_occlusion'
+    output_subfolder_name = f"images_occlusion_resize{str(resize_scale)}_contrastReduce{contrast_reduce}_num_image{num_image}"
+
+    # root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
+    # output_subfolder_name = f"images_resize{str(resize_scale)}_contrastReduce{contrast_reduce}_num_image{num_image}"
 
     for path, subdirs, files in tqdm(os.walk(root)):
         for name in files:
