@@ -3,7 +3,7 @@ BS=4
 NUM_EPOCHS=10
 RESIZE_SCALE=0.5
 NUM_IMAGE=10000
-train_image_size=224
+train_image_size=56
 train_contrast_reduce="121-140"
 output_folder="eval_diff_data_${MODEL}_bs${BS}_e${NUM_EPOCHS}_trainIs${train_image_size}_trainContrastReduce${train_contrast_reduce}"
 mkdir ${output_folder}

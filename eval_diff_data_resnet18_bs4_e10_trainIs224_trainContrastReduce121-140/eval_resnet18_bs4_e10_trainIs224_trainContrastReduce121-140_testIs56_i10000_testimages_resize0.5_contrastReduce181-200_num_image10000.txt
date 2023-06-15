@@ -1,42 +1,42 @@
 
 resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
 learning_test
-Accuracy of the network on the 20000 test images: 50.00%
+Accuracy of the network on the 20000 test images: 68.41%
 Confusion Matrix
 ----------------
 [[10000     0]
- [10000     0]] 
+ [ 6319  3681]] 
 
 Per class accuracy
 ------------------
 Accuracy of class     plus : 100.00 %
-Accuracy of class      min : 0.00 %
+Accuracy of class      min : 36.81 %
 
 resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
 part_whole_test
-Accuracy of the network on the 20000 test images: 50.00%
+Accuracy of the network on the 20000 test images: 51.47%
 Confusion Matrix
 ----------------
 [[10000     0]
- [10000     0]] 
+ [ 9706   294]] 
 
 Per class accuracy
 ------------------
 Accuracy of class     plus : 100.00 %
-Accuracy of class      min : 0.00 %
+Accuracy of class      min : 2.94 %
 
 resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
 part_whole_flip_test
-Accuracy of the network on the 20000 test images: 50.00%
+Accuracy of the network on the 20000 test images: 68.45%
 Confusion Matrix
 ----------------
-[[10000     0]
- [10000     0]] 
+[[9998    2]
+ [6308 3692]] 
 
 Per class accuracy
 ------------------
-Accuracy of class     plus : 100.00 %
-Accuracy of class      min : 0.00 %
+Accuracy of class     plus : 99.98 %
+Accuracy of class      min : 36.92 %
 
 resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
 learning_occ_test
@@ -79,13 +79,13 @@ Accuracy of class      min : 0.00 %
 
 resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce121-140_num_image10000.pth
 part_whole_flip_occ_test
-Accuracy of the network on the 20000 test images: 50.00%
+Accuracy of the network on the 20000 test images: 50.01%
 Confusion Matrix
 ----------------
 [[10000     0]
- [10000     0]] 
+ [ 9999     1]] 
 
 Per class accuracy
 ------------------
 Accuracy of class     plus : 100.00 %
-Accuracy of class      min : 0.00 %
+Accuracy of class      min : 0.01 %
