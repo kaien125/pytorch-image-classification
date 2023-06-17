@@ -1,4 +1,4 @@
-
+test,batch,test_image_size,train_image_size,test_contrast_reduce,train_contrast_reduce,num_epochs,+ accuracy,- accuracy,avg accuracy,resize,model weights
 learning_test,4,2,224,1-20,1-20,10,0.0,1.0,0.5,0.5,resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce1-20_num_image10000.pth
 part_whole_test,4,2,224,1-20,1-20,10,0.0,1.0,0.5,0.5,resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce1-20_num_image10000.pth
 part_whole_flip_test,4,2,224,1-20,1-20,10,0.0,1.0,0.5,0.5,resnet18_is224_bs4_e10_i10000_resize0.5_contrastReduce1-20_num_image10000.pth
