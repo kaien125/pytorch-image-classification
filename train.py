@@ -39,13 +39,13 @@ image_path = args["image_path"]
 image_size=int(args["image_size"])
 
 # Set the train and validation directory paths
-train_directory = image_path + '/train'
+train_directory = image_path + '/one_test'
 # valid_directory = 'images_resize_relocate/val'
-valid_directory = image_path + '/val'
+valid_directory = image_path + '/one_test'
 augment = image_path.replace('images','')
 
 # Set the model save path
-PATH = "models/"+train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+PATH = "models/"+train_mode + '_one_train_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 
 # Number of classes
 num_classes = 2

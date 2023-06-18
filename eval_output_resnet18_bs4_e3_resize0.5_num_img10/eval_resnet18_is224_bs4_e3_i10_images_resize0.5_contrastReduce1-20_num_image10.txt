@@ -1,0 +1,13 @@
+
+resnet18_is224_bs4_e3_i10_resize0.5_contrastReduce1-20_num_image10.pth
+part_whole_test
+Accuracy of the network on the 20 test images: 50.00%
+Confusion Matrix
+----------------
+[[ 0 10]
+ [ 0 10]] 
+
+Per class accuracy
+------------------
+Accuracy of class     plus : 0.00 %
+Accuracy of class      min : 100.00 %

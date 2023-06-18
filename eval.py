@@ -30,12 +30,12 @@ num_img = int(args["num_images"])
 image_size = int(args["image_size"])
 image_path = args["image_path"]
 sub_path = args["sub_path"]
-augment = image_path.replace('images_occlusion','')
+augment = image_path.replace('images','')
 # Paths for image directory and model
 EVAL_DIR=image_path+'/'+sub_path
 # EVAL_MODEL='models/mobilenetv2.pth'
 # Set the model save path
-EVAL_MODEL = train_mode + '_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
+EVAL_MODEL = train_mode + '_one_train_is'+ str(image_size) +'_bs' + str(bs) + '_e' + str(num_epochs) + '_i'+str(num_img) + augment + '.pth'
 # Load the model for evaluation
 model = torch.load("models/"+EVAL_MODEL)
 model.eval()
@@ -118,7 +118,7 @@ for label,accuracy in zip(eval_dataset.classes, class_accuracy):
      class_name=class_names[int(label)]
      print('Accuracy of class %8s : %0.2f %%'%(class_name, accuracy))
 
-with open(train_mode+'_eval.csv', 'a') as fd:
+with open(train_mode+'_one_eval.csv', 'a') as fd:
     fd.write(f'\n{sub_path},{bs},{image_size},{num_epochs},{class_accuracy[0]/100},{class_accuracy[1]/100},{correct/total},{resize},{contrast_reduce},{EVAL_MODEL}')
 '''
 Sample run: python eval.py eval_ds
