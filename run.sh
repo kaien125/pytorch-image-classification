@@ -20,12 +20,12 @@ do
    do
       # training
       IMAGE_PATH="images_resize${RESIZE_SCALE}_contrastReduce${CONTRAST_REDUCE}_num_image${NUM_IMAGE}"
-      TRAIN_FILE_NAME="${training_output_folder}/training_one_${MODEL}_is${IMAGE_SIZE}_bs${BS}_e${NUM_EPOCHS}_${IMAGE_PATH}.txt"
-      python train.py --model $MODEL --image_size $IMAGE_SIZE --bs $BS --num_epochs $NUM_EPOCHS --image_path $IMAGE_PATH --num_images $NUM_IMAGE >> ${TRAIN_FILE_NAME} 
+      # TRAIN_FILE_NAME="${training_output_folder}/training_one_${MODEL}_is${IMAGE_SIZE}_bs${BS}_e${NUM_EPOCHS}_${IMAGE_PATH}.txt"
+      # python train.py --model $MODEL --image_size $IMAGE_SIZE --bs $BS --num_epochs $NUM_EPOCHS --image_path $IMAGE_PATH --num_images $NUM_IMAGE >> ${TRAIN_FILE_NAME} 
 
       # evaluate
       # for SUB_PATH in "learning_test" "part_whole_test" "global_test" "composite_test" "part_whole_flip_test" "learning_occ_test" "one_test" "part_whole_occ_test" "part_whole_flip_occ_test" 
-      for SUB_PATH in "part_whole_test" "learning_test"
+      for SUB_PATH in "part_whole_flip_test" 
       do
          EVAL_FILE_NAME="${eval_output_folder}/eval_one_${MODEL}_is${IMAGE_SIZE}_bs${BS}_e${NUM_EPOCHS}_i${NUM_IMAGE}_${IMAGE_PATH}.txt"
          python eval.py --model $MODEL --image_size $IMAGE_SIZE --bs $BS --num_epochs $NUM_EPOCHS --image_path $IMAGE_PATH --num_images $NUM_IMAGE --sub_path $SUB_PATH >> ${EVAL_FILE_NAME} 
