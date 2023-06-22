@@ -67,7 +67,7 @@ def main():
     contrast_reduce = args["contrast_reduce"]
     num_image = int(args["num_image"])
 
-    root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
+    root = 'images'
     output_subfolder_name = f"images_resize{str(resize_scale)}_contrastReduce{contrast_reduce}_num_image{num_image}"
 
     # root = '/home/kaien125/experiments/code/bee vision/pytorch-image-classification/images'
